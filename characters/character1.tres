@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://dho8kn5hcmukn"]
+
+[ext_resource type="Script" path="res://Scripts/Resource/Character.gd" id="1_wgtkm"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_5w1j4"]
+
+[resource]
+script = ExtResource("1_wgtkm")
+hp = 4
+attack = 2
+move_distance = 1
+sp = 5
+img = SubResource("ImageTexture_5w1j4")

@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqnxgn2j241km"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CharacterGridContainer.gd" id="1_08gnr"]
+[ext_resource type="Script" path="res://Scripts/BottomPanelManageer.gd" id="1_08qmd"]
+[ext_resource type="PackedScene" uid="uid://2dtlwqal1jlk" path="res://prefabs/UI/CharacterButton.tscn" id="3_bj7dx"]
+[ext_resource type="Script" path="res://Scripts/UI/NumberGridContainer.gd" id="3_h672a"]
+[ext_resource type="PackedScene" uid="uid://6ogvs6pqsudg" path="res://prefabs/UI/NumButton.tscn" id="5_s4h7f"]
+[ext_resource type="Script" path="res://Scripts/UI/OperatorGridContainer.gd" id="6_g2yc7"]
+
+[sub_resource type="Gradient" id="Gradient_xctci"]
+colors = PackedColorArray(0.496326, 0.65867, 1, 1, 1.34766e-06, 0.884476, 0.88752, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4j8q7"]
+gradient = SubResource("Gradient_xctci")
+width = 1920
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-244, -142)
+scale = Vector2(1.39688, 1396)
+texture = SubResource("GradientTexture1D_4j8q7")
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("cc", "nc", "oc")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -510.0
+offset_top = -400.0
+offset_right = 398.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_08qmd")
+cc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer2/GridContainer")
+nc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer/GridContainer2")
+oc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer4/GridContainer2")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+ratio = 1.5
+stretch_mode = 1
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
+script = ExtResource("1_08gnr")
+grid_num = 6
+buttonType = ExtResource("3_bj7dx")
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.3
+
+[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer3"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+text = "Flight"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 1
+alignment_horizontal = 0
+
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
+script = ExtResource("3_h672a")
+grid_num = 9
+buttonType = ExtResource("5_s4h7f")
+
+[node name="AspectRatioContainer4" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+ratio = 0.25
+stretch_mode = 1
+alignment_horizontal = 0
+
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("6_g2yc7")
+grid_num = 4
+buttonType = ExtResource("5_s4h7f")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://btgd7u5vv51ee"]
+
+[ext_resource type="Texture2D" path="res://Panel-TotemSub-Simple01.png" id="1_00264"]
+[ext_resource type="Script" path="res://Scripts/Resource/Character.gd" id="1_axics"]
+
+[resource]
+script = ExtResource("1_axics")
+hp = 1
+attack = 3
+move_distance = 5
+sp = 2
+img = ExtResource("1_00264")
