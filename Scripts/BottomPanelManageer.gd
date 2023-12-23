@@ -3,6 +3,7 @@ extends PanelContainer
 @export var cc:CharacterGridContainer
 @export var nc:NumberGridContainer
 @export var oc:OperatorGridContainer
+@export var character_lists: Array[Character]
 
 var selected_number: int
 var selected_number_index: int
@@ -57,3 +58,19 @@ func _operator_changed(operator: String, _idx: int):
 			return
 		selected_operator = operator
 	print(operator)
+
+
+
+
+func Test_GenCharacter():
+	cc._clear()
+	for i in range(randi_range(2, 6)):
+		cc._add(character_lists[randi_range(0, character_lists.size() - 1)])
+	pass # Replace with function body.
+
+
+func Test_GenNumbers():
+	nc._clear()
+	for i in range(randi_range(3, 9)):
+		nc._add(randi_range(1, 9))
+	pass # Replace with function body.

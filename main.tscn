@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqnxgn2j241km"]
+[gd_scene load_steps=11 format=3 uid="uid://cqnxgn2j241km"]
 
 [ext_resource type="Script" path="res://Scripts/UI/CharacterGridContainer.gd" id="1_08gnr"]
 [ext_resource type="Script" path="res://Scripts/BottomPanelManageer.gd" id="1_08qmd"]
+[ext_resource type="Resource" uid="uid://dho8kn5hcmukn" path="res://characters/character1.tres" id="2_6s8ox"]
 [ext_resource type="PackedScene" uid="uid://2dtlwqal1jlk" path="res://prefabs/UI/CharacterButton.tscn" id="3_bj7dx"]
+[ext_resource type="Resource" uid="uid://btgd7u5vv51ee" path="res://characters/character2.tres" id="3_gjg1d"]
 [ext_resource type="Script" path="res://Scripts/UI/NumberGridContainer.gd" id="3_h672a"]
 [ext_resource type="PackedScene" uid="uid://6ogvs6pqsudg" path="res://prefabs/UI/NumButton.tscn" id="5_s4h7f"]
 [ext_resource type="Script" path="res://Scripts/UI/OperatorGridContainer.gd" id="6_g2yc7"]
@@ -45,6 +47,7 @@ script = ExtResource("1_08qmd")
 cc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer2/GridContainer")
 nc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer/GridContainer2")
 oc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer4/GridContainer2")
+character_lists = Array[Resource("res://Scripts/Resource/Character.gd")]([ExtResource("2_6s8ox"), ExtResource("3_gjg1d")])
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
@@ -109,3 +112,18 @@ size_flags_horizontal = 3
 script = ExtResource("6_g2yc7")
 grid_num = 4
 buttonType = ExtResource("5_s4h7f")
+
+[node name="TestContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/TestContainer"]
+layout_mode = 2
+text = "GenerateCharacter"
+
+[node name="Button2" type="Button" parent="CanvasLayer/TestContainer"]
+layout_mode = 2
+text = "GenerateNumber"
+
+[connection signal="pressed" from="CanvasLayer/TestContainer/Button" to="CanvasLayer/PanelContainer" method="Test_GenCharacter"]
+[connection signal="pressed" from="CanvasLayer/TestContainer/Button2" to="CanvasLayer/PanelContainer" method="Test_GenNumbers"]
