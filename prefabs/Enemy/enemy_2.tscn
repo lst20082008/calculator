@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://bv168itagxbb6"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_w0hyb"]
+[ext_resource type="Texture2D" uid="uid://0bcbf552phag" path="res://Asserts/images/Monster_1b-Sheet.png" id="2_ak5mo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhhpn"]
+atlas = ExtResource("2_ak5mo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml0s6"]
+atlas = ExtResource("2_ak5mo")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy0i4"]
+atlas = ExtResource("2_ak5mo")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg11i"]
+atlas = ExtResource("2_ak5mo")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvxih"]
+atlas = ExtResource("2_ak5mo")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6llco"]
+atlas = ExtResource("2_ak5mo")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tcxr"]
+atlas = ExtResource("2_ak5mo")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eqem"]
+atlas = ExtResource("2_ak5mo")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l76x7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhhpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml0s6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy0i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg11i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvxih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6llco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tcxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eqem")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_w0hyb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l76x7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,13 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqnxgn2j241km"]
+[gd_scene load_steps=15 format=3 uid="uid://cqnxgn2j241km"]
 
-[ext_resource type="Script" path="res://Scripts/UI/CharacterGridContainer.gd" id="1_08gnr"]
 [ext_resource type="Script" path="res://Scripts/BottomPanelManageer.gd" id="1_08qmd"]
-[ext_resource type="Resource" uid="uid://dho8kn5hcmukn" path="res://characters/character1.tres" id="2_6s8ox"]
-[ext_resource type="PackedScene" uid="uid://2dtlwqal1jlk" path="res://prefabs/UI/CharacterButton.tscn" id="3_bj7dx"]
-[ext_resource type="Resource" uid="uid://btgd7u5vv51ee" path="res://characters/character2.tres" id="3_gjg1d"]
+[ext_resource type="Resource" uid="uid://c601hgpoa8tpb" path="res://skills_res/skill1.tres" id="2_ffrbn"]
+[ext_resource type="Resource" uid="uid://60kgtslj3jbf" path="res://skills_res/skill2.tres" id="3_3h8uq"]
+[ext_resource type="Script" path="res://Scripts/UI/SkillGridContainer.gd" id="3_h70bd"]
 [ext_resource type="Script" path="res://Scripts/UI/NumberGridContainer.gd" id="3_h672a"]
 [ext_resource type="PackedScene" uid="uid://6ogvs6pqsudg" path="res://prefabs/UI/NumButton.tscn" id="5_s4h7f"]
 [ext_resource type="Script" path="res://Scripts/UI/OperatorGridContainer.gd" id="6_g2yc7"]
+[ext_resource type="PackedScene" uid="uid://b0bsh8qrkgn3c" path="res://prefabs/UI/SkillButton.tscn" id="6_u2mp4"]
+[ext_resource type="Script" path="res://GamePlayManager.gd" id="9_6ofbr"]
+[ext_resource type="PackedScene" uid="uid://dahsrmw5hamus" path="res://prefabs/Enemy/enemy_1.tscn" id="10_jntnw"]
+[ext_resource type="PackedScene" uid="uid://bv168itagxbb6" path="res://prefabs/Enemy/enemy_2.tscn" id="11_6xrsl"]
+[ext_resource type="PackedScene" uid="uid://cw4s238n4hyxh" path="res://prefabs/Skill/skill3.tscn" id="12_1fgx5"]
 
 [sub_resource type="Gradient" id="Gradient_xctci"]
 colors = PackedColorArray(0.496326, 0.65867, 1, 1, 1.34766e-06, 0.884476, 0.88752, 1)
@@ -20,77 +24,78 @@ width = 1920
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-244, -142)
-scale = Vector2(1.39688, 1396)
+scale = Vector2(0.945313, 3447)
 texture = SubResource("GradientTexture1D_4j8q7")
 centered = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 540)
+anchor_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("cc", "nc", "oc")]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer"]
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -510.0
-offset_top = -400.0
-offset_right = 398.0
-offset_bottom = -100.0
+offset_top = -368.0
+offset_bottom = -317.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("1_08qmd")
-cc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer2/GridContainer")
-nc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer/GridContainer2")
-oc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer4/GridContainer2")
-character_lists = Array[Resource("res://Scripts/Resource/Character.gd")]([ExtResource("2_6s8ox"), ExtResource("3_gjg1d")])
-metadata/_edit_use_anchors_ = true
+size_flags_vertical = 0
+ratio = 3.0
+stretch_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(450, 300)
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AspectRatioContainer" node_paths=PackedStringArray("sc", "nc", "oc")]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("1_08qmd")
+sc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer2/SkillGridContainer")
+nc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer/GridContainer2")
+oc = NodePath("MarginContainer/HBoxContainer/AspectRatioContainer4/GridContainer2")
+skill_lists = Array[Resource("res://Scripts/Resource/Skill.gd")]([ExtResource("2_ffrbn"), ExtResource("3_3h8uq")])
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 18.0
 ratio = 1.5
 stretch_mode = 1
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer2"]
+[node name="SkillGridContainer" type="GridContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer2"]
+layout_mode = 2
+columns = 3
+script = ExtResource("3_h70bd")
+grid_num = 6
+buttonType = ExtResource("6_u2mp4")
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-columns = 3
-script = ExtResource("1_08gnr")
-grid_num = 6
-buttonType = ExtResource("3_bj7dx")
+size_flags_stretch_ratio = 3.0
 
-[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
+[node name="Button" type="Button" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer3"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_stretch_ratio = 0.3
-
-[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer3"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_stretch_ratio = 0.0
 text = "Flight"
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 300)
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 12.0
 stretch_mode = 1
 alignment_horizontal = 0
 
-[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer"]
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 3
@@ -98,17 +103,16 @@ script = ExtResource("3_h672a")
 grid_num = 9
 buttonType = ExtResource("5_s4h7f")
 
-[node name="AspectRatioContainer4" type="AspectRatioContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 300)
+[node name="AspectRatioContainer4" type="AspectRatioContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 ratio = 0.25
 stretch_mode = 1
 alignment_horizontal = 0
 
-[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer4"]
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/AspectRatioContainer/PanelContainer/MarginContainer/HBoxContainer/AspectRatioContainer4"]
 layout_mode = 2
-size_flags_horizontal = 3
 script = ExtResource("6_g2yc7")
 grid_num = 4
 buttonType = ExtResource("5_s4h7f")
@@ -125,5 +129,19 @@ text = "GenerateCharacter"
 layout_mode = 2
 text = "GenerateNumber"
 
-[connection signal="pressed" from="CanvasLayer/TestContainer/Button" to="CanvasLayer/PanelContainer" method="Test_GenCharacter"]
-[connection signal="pressed" from="CanvasLayer/TestContainer/Button2" to="CanvasLayer/PanelContainer" method="Test_GenNumbers"]
+[node name="GamePlayManager" type="Node" parent="."]
+script = ExtResource("9_6ofbr")
+enemies = Array[PackedScene]([ExtResource("10_jntnw"), ExtResource("11_6xrsl")])
+
+[node name="Timer" type="Timer" parent="GamePlayManager"]
+autostart = true
+
+[node name="GeneratedPlace" type="Line2D" parent="GamePlayManager"]
+points = PackedVector2Array(31, 28, 1402, 364)
+default_color = Color(1, 1, 1, 0)
+
+[node name="skill3" parent="." instance=ExtResource("12_1fgx5")]
+
+[connection signal="pressed" from="CanvasLayer/TestContainer/Button" to="CanvasLayer/AspectRatioContainer/PanelContainer" method="Test_GenCharacter"]
+[connection signal="pressed" from="CanvasLayer/TestContainer/Button2" to="CanvasLayer/AspectRatioContainer/PanelContainer" method="Test_GenNumbers"]
+[connection signal="timeout" from="GamePlayManager/Timer" to="GamePlayManager" method="_on_timer_timeout"]

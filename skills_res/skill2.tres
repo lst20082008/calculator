@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://60kgtslj3jbf"]
+
+[ext_resource type="Texture2D" uid="uid://bcuwuqdlinwcq" path="res://icon.svg" id="1_xsbmy"]
+[ext_resource type="Script" path="res://Scripts/Resource/Skill.gd" id="2_bab5b"]
+[ext_resource type="PackedScene" uid="uid://ccvt58t2xckax" path="res://prefabs/Skill/skill2.tscn" id="3_7syjk"]
+
+[resource]
+script = ExtResource("2_bab5b")
+sp = 5
+img = ExtResource("1_xsbmy")
+skillObject = ExtResource("3_7syjk")
