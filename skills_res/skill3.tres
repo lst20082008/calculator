@@ -9,3 +9,4 @@ script = ExtResource("1_slauj")
 sp = 7
 img = ExtResource("1_kp3ui")
 skillObject = ExtResource("3_qtwcf")
+skillStrategy = 0

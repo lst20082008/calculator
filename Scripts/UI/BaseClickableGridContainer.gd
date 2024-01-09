@@ -1,11 +1,11 @@
-extends GridContainer
-
 class_name BaseClickableGridContainer
+extends GridContainer
 
 @export var grid_num: int
 @export var buttonType: PackedScene
 
 signal selected_changed(current_selected_data, current_selected_index)
+signal item_clicked(current_selected_data, current_selected_index)
 
 var selected_n: int
 var data_list: Array = []
@@ -15,6 +15,7 @@ func _ready():
 	_clear()
 
 func _button_n_pressed(n):
+	item_clicked.emit(_get_data(n), n)
 	if selected_n != n:
 		selected_n = n
 		selected_changed.emit(_get_selected_data(), n)
@@ -75,6 +76,11 @@ func _get_selected_data():
 	if selected_n >= grid_num || selected_n == -1:
 		return null
 	return data_list[selected_n]
+
+func _get_data(idx):
+	if idx >= grid_num || idx == -1:
+		return null
+	return data_list[idx]
 
 func _get_item(i: int):
 	if i >= grid_num || i <= -1:

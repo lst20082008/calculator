@@ -1,6 +1,5 @@
-extends BaseClickableGridContainer
-
 class_name SkillGridContainer
+extends BaseClickableGridContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

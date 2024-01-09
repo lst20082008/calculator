@@ -1,6 +1,5 @@
-extends BaseClickableGridContainer
-
 class_name NumberGridContainer
+extends BaseClickableGridContainer
 
 func _ready():
 	_clear()

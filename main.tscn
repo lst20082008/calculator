@@ -132,6 +132,7 @@ text = "GenerateNumber"
 [node name="GamePlayManager" type="Node" parent="."]
 script = ExtResource("9_6ofbr")
 enemies = Array[PackedScene]([ExtResource("10_jntnw"), ExtResource("11_6xrsl")])
+hp = 100
 
 [node name="Timer" type="Timer" parent="GamePlayManager"]
 autostart = true
@@ -140,7 +141,12 @@ autostart = true
 points = PackedVector2Array(31, 28, 1402, 364)
 default_color = Color(1, 1, 1, 0)
 
+[node name="WallPos" type="Node2D" parent="GamePlayManager"]
+position = Vector2(736, 2372)
+
 [node name="skill3" parent="." instance=ExtResource("12_1fgx5")]
+
+[node name="Enemies" type="Node2D" parent="."]
 
 [connection signal="pressed" from="CanvasLayer/TestContainer/Button" to="CanvasLayer/AspectRatioContainer/PanelContainer" method="Test_GenCharacter"]
 [connection signal="pressed" from="CanvasLayer/TestContainer/Button2" to="CanvasLayer/AspectRatioContainer/PanelContainer" method="Test_GenNumbers"]

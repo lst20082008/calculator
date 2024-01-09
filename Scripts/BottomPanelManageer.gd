@@ -12,10 +12,9 @@ var selected_operator
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sc.selected_changed.connect(_skill_changed)
-	nc.selected_changed.connect(_number_changed)
-	oc.selected_changed.connect(_operator_changed)
-	
+	sc.item_clicked.connect(_skill_changed)
+	nc.item_clicked.connect(_number_changed)
+	oc.item_clicked.connect(_operator_changed)
 	selected_number = -1
 	selected_operator = null
 
@@ -28,11 +27,16 @@ func _skill_changed(skill: Skill, _idx: int):
 	nc._erase(selected_number_index)
 	selected_number = -1
 	selected_number_index = -1
-	get_tree().current_scene.add_child(skill.skillObject.instantiate())
+	var skillObject = skill.skillObject.instantiate()
+	skillObject.skill = skill
+	skillObject.targetPos = get_tree().current_scene.find_child("GamePlayManager").find_skill_pos(skill.skillStrategy)
+	get_tree().current_scene.add_child(skillObject)
 	print(skill)
 
 func _number_changed(num: int, idx: int):
 	var newNum: int
+	if idx == selected_number_index:
+		return
 	if selected_operator == null:
 		selected_number = num
 		selected_number_index = idx
@@ -53,8 +57,8 @@ func _number_changed(num: int, idx: int):
 		print("and to update new num")
 		nc._erase(selected_number_index)
 		nc._update(idx, newNum)
-		selected_number = newNum
-		selected_number_index = idx
+		selected_number = -1
+		selected_number_index = -1
 		selected_operator = null
 	print(num)
 

@@ -1,5 +1,5 @@
-extends Resource
 class_name Character
+extends Resource
 
 @export var hp : int
 @export var attack : int
