@@ -35,7 +35,6 @@ func _process(delta):
 			# attack here
 			# $AnimatedSprite2D.play("attack")
 			# damage hp
-			print("attack")
 			game_play_manager.get_damage(damage)
 			canAttack = false
 			timer.start()
@@ -44,3 +43,8 @@ func _process(delta):
 		velocity = Vector2.UP * -1 * move_speed * move_rate
 		move_and_slide()
 		pass
+
+func take_damage(d):
+	hp = hp - d
+	if hp <= 0:
+		queue_free()

@@ -30,8 +30,8 @@ func _skill_changed(skill: Skill, _idx: int):
 	var skillObject = skill.skillObject.instantiate()
 	skillObject.skill = skill
 	skillObject.targetPos = get_tree().current_scene.find_child("GamePlayManager").find_skill_pos(skill.skillStrategy)
+	skillObject.position = get_tree().current_scene.find_child("GamePlayManager").get_target_pos()
 	get_tree().current_scene.add_child(skillObject)
-	print(skill)
 
 func _number_changed(num: int, idx: int):
 	var newNum: int
@@ -44,35 +44,26 @@ func _number_changed(num: int, idx: int):
 		match selected_operator:
 			'+':
 				newNum = selected_number + num
-				print("%d + %d" % [selected_number, num])
 			'-':
 				newNum = selected_number - num
 				if newNum < 0:
 					newNum = 0
-				print("%d - %d" % [selected_number, num])
 			'x':
 				newNum = selected_number * num
-				print("%d x %d" % [selected_number, num])
-		print("time to delete old num")
-		print("and to update new num")
 		nc._erase(selected_number_index)
 		nc._update(idx, newNum)
 		selected_number = -1
 		selected_number_index = -1
 		selected_operator = null
-	print(num)
 
 func _operator_changed(operator: String, _idx: int):
-	print("_operator_changed")
 	if operator == 'C':
-		print("pressed C!")
 		selected_operator = null
 		pass
 	else:
 		if selected_number == -1:
 			return
 		selected_operator = operator
-	print(operator)
 
 
 

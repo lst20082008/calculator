@@ -4,8 +4,11 @@ extends Node
 @export var enemies: Array[PackedScene]
 @export var hp: int
 
+var gameState
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gameState = "init"
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,8 +31,10 @@ func generate_enemy():
 	pass
 
 func get_target_y():
-	print($WallPos.get_global_position()[1])
 	return $WallPos.get_global_position()[1]
+
+func get_target_pos():
+	return $WallPos.get_global_position()
 
 func get_damage(d):
 	hp = hp - d
@@ -38,9 +43,15 @@ func get_damage(d):
 
 func defeated():
 	print("defeated")
+	if gameState == "defeated":
+		return
+	$WallPos/Sprite2D.queue_free()
+	gameState = "defeated"
+	pass
 
 func victory():
 	print("victory")
+	pass
 
 func find_skill_pos(strategy: Strategy.Strategy):
 	match strategy:

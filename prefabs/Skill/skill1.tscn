@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bekneoer1qpw7"]
+[gd_scene load_steps=5 format=3 uid="uid://bekneoer1qpw7"]
 
 [ext_resource type="Script" path="res://Scripts/skill/Skill1.gd" id="1_unx23"]
 
@@ -8,8 +8,19 @@
 gradient = SubResource("Gradient_u2obo")
 fill_from = Vector2(0.504274, 0.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ggxp"]
+size = Vector2(372, 372)
+
 [node name="Skill" type="Node2D"]
 script = ExtResource("1_unx23")
+damage = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5.8125, 5.8125)
 texture = SubResource("GradientTexture2D_k5ov7")
+
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3ggxp")

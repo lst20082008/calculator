@@ -1,6 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccvt58t2xckax"]
+[gd_scene load_steps=5 format=3 uid="uid://ccvt58t2xckax"]
 
 [ext_resource type="Script" path="res://Scripts/skill/Skill2.gd" id="1_hr0ll"]
 
+[sub_resource type="Gradient" id="Gradient_m1khf"]
+colors = PackedColorArray(1, 0.539167, 0.21, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3uiho"]
+gradient = SubResource("Gradient_m1khf")
+fill = 1
+fill_from = Vector2(1, 0.491453)
+fill_to = Vector2(0.252137, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evwxb"]
+size = Vector2(64, 64)
+
 [node name="Skill" type="Node2D"]
 script = ExtResource("1_hr0ll")
+damage = 100
+speed = 300.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_3uiho")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+disable_mode = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_evwxb")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

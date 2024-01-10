@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bv168itagxbb6"]
+[gd_scene load_steps=13 format=3 uid="uid://bv168itagxbb6"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_w0hyb"]
 [ext_resource type="Texture2D" uid="uid://0bcbf552phag" path="res://Asserts/images/Monster_1b-Sheet.png" id="2_ak5mo"]
@@ -67,10 +67,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ln5"]
+size = Vector2(31, 50)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_w0hyb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l76x7")
+offset = Vector2(0, -30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -25)
+shape = SubResource("RectangleShape2D_x0ln5")
