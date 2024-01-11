@@ -9,9 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/UI/OperatorGridContainer.gd" id="6_g2yc7"]
 [ext_resource type="PackedScene" uid="uid://b0bsh8qrkgn3c" path="res://prefabs/UI/SkillButton.tscn" id="6_u2mp4"]
 [ext_resource type="Script" path="res://GamePlayManager.gd" id="9_6ofbr"]
+[ext_resource type="Script" path="res://DefeatedPanelContainer.gd" id="9_fctri"]
 [ext_resource type="PackedScene" uid="uid://dahsrmw5hamus" path="res://prefabs/Enemy/enemy_1.tscn" id="10_jntnw"]
 [ext_resource type="PackedScene" uid="uid://bv168itagxbb6" path="res://prefabs/Enemy/enemy_2.tscn" id="11_6xrsl"]
-[ext_resource type="PackedScene" uid="uid://cw4s238n4hyxh" path="res://prefabs/Skill/skill3.tscn" id="12_1fgx5"]
 
 [sub_resource type="Gradient" id="Gradient_xctci"]
 colors = PackedColorArray(0.496326, 0.65867, 1, 1, 1.34766e-06, 0.884476, 0.88752, 1)
@@ -139,6 +139,34 @@ text = "GenerateCharacter"
 layout_mode = 2
 text = "GenerateNumber"
 
+[node name="DefeatedPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.0
+offset_top = -179.0
+offset_right = 137.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_fctri")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DefeatedPanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DefeatedPanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Defeated"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/DefeatedPanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "restart"
+
 [node name="GamePlayManager" type="Node" parent="."]
 script = ExtResource("9_6ofbr")
 enemies = Array[PackedScene]([ExtResource("10_jntnw"), ExtResource("11_6xrsl")])
@@ -159,10 +187,9 @@ texture = SubResource("GradientTexture2D_4j8fm")
 centered = false
 offset = Vector2(-1000, 0)
 
-[node name="skill3" parent="." instance=ExtResource("12_1fgx5")]
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [connection signal="pressed" from="CanvasLayer/TestContainer/Button" to="CanvasLayer/AspectRatioContainer/PanelContainer" method="Test_GenCharacter"]
 [connection signal="pressed" from="CanvasLayer/TestContainer/Button2" to="CanvasLayer/AspectRatioContainer/PanelContainer" method="Test_GenNumbers"]
+[connection signal="pressed" from="CanvasLayer/DefeatedPanelContainer/VBoxContainer/Button" to="CanvasLayer/DefeatedPanelContainer" method="_on_button_pressed"]
 [connection signal="timeout" from="GamePlayManager/Timer" to="GamePlayManager" method="_on_timer_timeout"]

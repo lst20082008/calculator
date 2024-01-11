@@ -47,6 +47,7 @@ func defeated():
 		return
 	$WallPos/Sprite2D.queue_free()
 	gameState = "defeated"
+	$"../CanvasLayer/DefeatedPanelContainer".show()
 	pass
 
 func victory():

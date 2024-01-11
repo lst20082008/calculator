@@ -5,8 +5,7 @@ extends SkillBase
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("skill1!!!!")
-	$Sprite2D.position = targetPos
-	$Area2D.position = targetPos
+	position = targetPos
 	await get_tree().create_timer(0.1).timeout
 	var enemies = $Area2D.get_overlapping_bodies()
 	print(enemies)
